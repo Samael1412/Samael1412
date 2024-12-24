@@ -3,39 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería de Vuestro Rey Mágico</title>
+    <title>Galería del Rey Mágico</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #d6a8f3; /* Fondo morado claro */
+            background-color: #d5a9ff; /* Fondo morado claro */
+            background-image: url('magiagif.gif'); /* GIF de efectos de magia */
             background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
+            background-size: 10%;
+            background-position: center top;
             text-align: center;
-            height: 100vh; /* Asegura que el fondo cubra toda la pantalla */
+            height: 100vh;
             margin: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Centra verticalmente */
-            align-items: center; /* Centra horizontalmente */
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
         }
 
-        /* Efecto de magia flotante */
+        /* Efecto de magia flotando */
         .magic {
             position: absolute;
-            color: #ffffff;
+            color: blue;
             font-size: 2rem;
-            animation: magic 10s linear infinite;
+            animation: magicEffect 10s linear infinite;
         }
 
-        @keyframes magic {
+        @keyframes magicEffect {
             0% {
-                transform: translateY(0) scale(1) rotate(0deg);
+                transform: translateY(0) rotate(0deg);
                 opacity: 1;
             }
             100% {
-                transform: translateY(-100vh) scale(1.5) rotate(360deg);
+                transform: translateY(-100vh) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -50,11 +51,10 @@
             margin-bottom: 20px;
         }
 
-        /* Contenedor de las imágenes */
         .container {
             display: flex;
-            justify-content: center; /* Centra las imágenes horizontalmente */
-            align-items: center; /* Centra las imágenes verticalmente */
+            justify-content: center;
+            align-items: center;
             flex-direction: column;
             margin-top: 20px;
         }
@@ -64,15 +64,13 @@
             margin: 10px;
             border: 2px solid #ddd;
             border-radius: 10px;
-            display: none; /* Ocultar todas las imágenes por defecto */
+            display: none;
             cursor: pointer;
-            opacity: 0; /* Empieza sin visibilidad */
-            transition: opacity 0.5s ease-in-out; /* Transición suave */
         }
 
-        /* Botón "Click aquí para la magia" más romántico */
+        /* Botón "Haz click para la magia" más romántico */
         .magic-button {
-            background: linear-gradient(45deg, #ff6b6b, #ff4d4d); /* Fondo de gradiente */
+            background: linear-gradient(45deg, #ff6b6b, #ff4d4d);
             color: white;
             border: none;
             padding: 20px 40px;
@@ -96,51 +94,23 @@
         .magic-button:active {
             transform: scale(0.95);
         }
-
-        /* Botón de Pausa */
-        .pause-button {
-            background: linear-gradient(45deg, #4dff6b, #4dff9e);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.8rem;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-top: 20px;
-            font-family: 'Poppins', sans-serif;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease-in-out;
-        }
-
-        .pause-button:hover {
-            background: linear-gradient(45deg, #4dff9e, #4dff6b);
-            transform: scale(1.1);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-        }
-
-        .pause-button:active {
-            transform: scale(0.95);
-        }
     </style>
 </head>
 <body>
-    <h1>Vuestro Rey Mágico</h1>
+    <h1>Galería del Rey Mágico</h1>
 
-    <!-- Efectos de magia flotante -->
+    <!-- Efectos mágicos flotando -->
     <div class="magic" style="left: 10%; animation-delay: 0s;">✨</div>
     <div class="magic" style="left: 30%; animation-delay: 1s;">✨</div>
     <div class="magic" style="left: 50%; animation-delay: 2s;">✨</div>
     <div class="magic" style="left: 70%; animation-delay: 3s;">✨</div>
     <div class="magic" style="left: 90%; animation-delay: 4s;">✨</div>
 
-    <!-- Botón "Click aquí para la magia" -->
-    <button class="magic-button" id="magicButton">Click aquí para la magia</button>
-
-    <!-- Botón de Pausa para la música -->
-    <button class="pause-button" id="pauseButton">Pausar Música</button>
+    <!-- Botón "Haz click para la magia" -->
+    <button class="magic-button" id="magicButton">Haz click para la magia</button>
 
     <div class="container">
-        <!-- Imágenes numeradas del 1 al 93 -->
+        <!-- Imágenes del 1 al 93 -->
         <img src="1.jpeg" alt="Imagen 1">
         <img src="2.jpeg" alt="Imagen 2">
         <img src="3.jpeg" alt="Imagen 3">
@@ -236,32 +206,40 @@
         <img src="93.jpeg" alt="Imagen 93">
     </div>
 
+    <!-- Reproductor de música invisible -->
+    <audio id="audioPlayer" preload="auto">
+        <source src="https://github.com/Samael1412/Samael1412/blob/51d16ad951cffe5e7e804a2627011a661bd3ca30/Lady%20Gaga%2C%20Bruno%20Mars%20-%20Die%20With%20A%20Smile%20(Sub%20Espa%C3%B1ol).mp3?raw=true" type="audio/mp3">
+    </audio>
+
     <script>
-        // Mostrar las imágenes una por una al hacer clic
-        let images = document.querySelectorAll('img');
-        let currentImage = 0;
+        let currentIndex = 0;
+        const images = document.querySelectorAll("img");
+        const totalImages = images.length;
+        const audioPlayer = document.getElementById("audioPlayer");
+        const magicButton = document.getElementById("magicButton");
 
-        document.getElementById('magicButton').addEventListener('click', function() {
-            if (currentImage < images.length) {
-                images[currentImage].style.display = 'block'; /* Muestra la imagen */
-                setTimeout(function() {
-                    images[currentImage].style.opacity = 1; /* Desvanece la imagen */
-                }, 50);
-                currentImage++;
-            }
-        });
+        // Mostrar la primera imagen
+        images[currentIndex].style.display = "block";
 
-        // Pausar la música
-        let audio = new Audio('tusCancion.m4a'); // Aquí pones el nombre de tu archivo de música
-        audio.loop = true;
-        audio.play();
+        // Función para cambiar la imagen
+        function showNextImage() {
+            // Ocultar la imagen actual
+            images[currentIndex].style.display = "none";
 
-        document.getElementById('pauseButton').addEventListener('click', function() {
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
-            }
+            // Incrementar el índice y volver a 0 si llega al final
+            currentIndex = (currentIndex + 1) % totalImages;
+
+            // Mostrar la siguiente imagen
+            images[currentIndex].style.display = "block";
+        }
+
+        // Iniciar la reproducción de la canción y las diapositivas cuando se haga clic en el botón
+        magicButton.addEventListener("click", function() {
+            // Reproducir la canción
+            audioPlayer.play();
+
+            // Iniciar las diapositivas
+            setInterval(showNextImage, 1412); // Velocidad de cambio de imagen (1.412 segundos)
         });
     </script>
 </body>
