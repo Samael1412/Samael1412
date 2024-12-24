@@ -15,7 +15,10 @@
             text-align: center;
             height: 100vh; /* Asegura que el fondo cubra toda la pantalla */
             margin: 0;
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centra verticalmente */
+            align-items: center; /* Centra horizontalmente */
             overflow: hidden;
         }
 
@@ -45,14 +48,15 @@
             margin-top: 20px;
             font-family: 'Great Vibes', cursive;
             text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
         }
 
         .container {
             display: flex;
             justify-content: center; /* Centra las imágenes horizontalmente */
             align-items: center; /* Centra las imágenes verticalmente */
-            height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
             flex-direction: column;
+            margin-top: 20px;
         }
 
         img {
@@ -64,45 +68,31 @@
             cursor: pointer;
         }
 
-        /* Botón "Click aquí para la magia" más bonito */
+        /* Botón "Click aquí para la magia" más romántico */
         .magic-button {
-            background-color: #ff4d4d;
+            background: linear-gradient(45deg, #ff6b6b, #ff4d4d); /* Fondo de gradiente */
             color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 2rem;
-            border-radius: 25px;
+            padding: 20px 40px;
+            font-size: 2.2rem;
+            border-radius: 50px;
             cursor: pointer;
-            margin: 20px 0;
+            margin: 30px 0;
             font-family: 'Poppins', sans-serif;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             transition: all 0.4s ease-in-out;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .magic-button:hover {
-            background-color: #ff6666;
+            background: linear-gradient(45deg, #ff4d4d, #ff6b6b);
             transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
         .magic-button:active {
             transform: scale(0.95);
-        }
-
-        /* Animación de corazones flotando */
-        .heart {
-            font-size: 2rem;
-            animation: float 10s linear infinite;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
         }
     </style>
 </head>
