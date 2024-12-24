@@ -15,12 +15,36 @@
             text-align: center;
             height: 100vh; /* Asegura que el fondo cubra toda la pantalla */
             margin: 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        h1 {
-            color: white; /* Título en blanco */
+        /* Efecto de corazones flotando */
+        .heart {
+            position: absolute;
+            color: red;
             font-size: 2rem;
+            animation: float 10s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Título con letras doradas y elegantes */
+        h1 {
+            color: gold;
+            font-size: 3rem;
             margin-top: 20px;
+            font-family: 'Great Vibes', cursive;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
         }
 
         .container {
@@ -38,10 +62,36 @@
             border-radius: 10px;
             display: none; /* Ocultar todas las imágenes por defecto */
         }
+
+        /* Indicador de la imagen actual */
+        .image-indicator {
+            font-size: 1.5rem;
+            color: white;
+            margin-top: 20px;
+        }
+
+        /* Generación de corazones animados */
+        .heart:nth-child(odd) {
+            animation-duration: 12s;
+            animation-delay: -1s;
+        }
+
+        .heart:nth-child(even) {
+            animation-duration: 8s;
+            animation-delay: 2s;
+        }
     </style>
 </head>
 <body>
     <h1>Galería de Mi Reina</h1>
+    
+    <!-- Corazones flotando en el fondo -->
+    <div class="heart" style="left: 10%; animation-delay: 0s;">❤️</div>
+    <div class="heart" style="left: 30%; animation-delay: 1s;">❤️</div>
+    <div class="heart" style="left: 50%; animation-delay: 2s;">❤️</div>
+    <div class="heart" style="left: 70%; animation-delay: 3s;">❤️</div>
+    <div class="heart" style="left: 90%; animation-delay: 4s;">❤️</div>
+
     <div class="container">
         <img src="1.jpeg" alt="Imagen 1">
         <img src="2.jpeg" alt="Imagen 2">
@@ -84,6 +134,10 @@
         <img src="39.jpeg" alt="Imagen 39">
     </div>
 
+    <div class="image-indicator">
+        Imagen <span id="current-image">1</span> de <span id="total-images">39</span>
+    </div>
+
     <script>
         let currentIndex = 0;
         const images = document.querySelectorAll("img");
@@ -91,6 +145,9 @@
 
         // Mostrar la primera imagen
         images[currentIndex].style.display = "block";
+
+        // Actualizar el indicador de imagen actual
+        document.getElementById('current-image').textContent = currentIndex + 1;
 
         // Función para cambiar la imagen
         function showNextImage() {
@@ -102,6 +159,9 @@
 
             // Mostrar la siguiente imagen
             images[currentIndex].style.display = "block";
+
+            // Actualizar el número de la imagen actual
+            document.getElementById('current-image').textContent = currentIndex + 1;
         }
 
         // Cambiar de imagen cada 3.14 segundos (3140 milisegundos)
