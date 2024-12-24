@@ -3,228 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería Vuestro Rey Mágico</title>
+    <title>Vuestro Rey Mágico</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #4b0082; /* Fondo morado oscuro */
-            background-image: url('magia.gif'); /* GIF de magia */
-            background-repeat: no-repeat;
-            background-size: 10%;
-            background-position: center top;
+            background: #4B0082; /* Fondo morado oscuro */
             text-align: center;
-            height: 100vh;
+            color: white;
             margin: 0;
+            padding: 0;
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Estrellas mágicas */
+        .star {
+            position: absolute;
+            top: -10px;
+            color: white;
+            font-size: 1.5em;
+            animation: magic 5s infinite;
+        }
+
+        @keyframes magic {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(50vh) scale(1.2);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(100vh) scale(1);
+                opacity: 0.2;
+            }
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4.5em;
+            color: yellow;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
             overflow: hidden;
         }
 
-        /* Efecto de magia flotante */
-        .magic {
-            position: absolute;
-            color: white;
-            font-size: 2rem;
-            animation: magicEffect 7s infinite;
-        }
-
-        @keyframes magicEffect {
-            0% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
-            50% {
-                transform: scale(1.5);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
-        }
-
-        /* Título con letras doradas y elegantes */
-        h1 {
-            color: gold;
-            font-size: 3rem;
-            margin-top: 20px;
-            font-family: 'Great Vibes', cursive;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
-        }
-
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 20px;
-        }
-
-        img {
-            max-width: 300px;
+        .gallery img {
+            max-width: 350px;
             margin: 10px;
-            border: 2px solid #ddd;
+            border: 3px solid white;
             border-radius: 10px;
-            display: none;
-            cursor: pointer;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            position: absolute;
+            animation: slide 1.412s ease-in-out forwards;
         }
 
-        /* Botón "Click aquí para la magia" más romántico */
-        .magic-button {
-            background: linear-gradient(45deg, #ff6b6b, #ff4d4d);
-            color: white;
-            border: none;
+        @keyframes slide {
+            0% { opacity: 0; transform: translateX(100%); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .gallery img.show {
+            opacity: 1;
+        }
+
+        .button {
+            background: #ff6b6b;
+            color: #fff;
+            font-size: 1.5em;
             padding: 20px 40px;
-            font-size: 2.2rem;
-            border-radius: 50px;
+            border: none;
+            border-radius: 15px;
             cursor: pointer;
-            margin: 30px 0;
-            font-family: 'Poppins', sans-serif;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease-in-out;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, background 0.3s;
         }
 
-        .magic-button:hover {
-            background: linear-gradient(45deg, #ff4d4d, #ff6b6b);
+        .button:hover {
+            background: #ff4444;
             transform: scale(1.1);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
-        .magic-button:active {
-            transform: scale(0.95);
+        .button:active {
+            transform: scale(0.9);
+        }
+
+        .gallery .button {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Galería Vuestro Rey Mágico</h1>
+    <h1>Vuestro Rey Mágico</h1>
 
-    <!-- Magia flotando en el fondo -->
-    <div class="magic" style="left: 10%; animation-delay: 0s;">✨</div>
-    <div class="magic" style="left: 30%; animation-delay: 1s;">🪄</div>
-    <div class="magic" style="left: 50%; animation-delay: 2s;">✨</div>
-    <div class="magic" style="left: 70%; animation-delay: 3s;">✨</div>
-    <div class="magic" style="left: 90%; animation-delay: 4s;">🪄</div>
+    <!-- Estrellas en el fondo -->
+    <div class="star" style="left: 10%;">✨</div>
+    <div class="star" style="left: 30%;">✨</div>
+    <div class="star" style="left: 50%;">✨</div>
+    <div class="star" style="left: 70%;">✨</div>
+    <div class="star" style="left: 90%;">✨</div>
 
-    <!-- Botón "Click aquí para la magia" -->
-    <button class="magic-button" id="magicButton">Click aquí para la mágia</button>
-
-    <div class="container">
-        <!-- Imágenes de la galería -->
-        <img src="1.jpeg" alt="Imagen 1">
-        <img src="2.jpeg" alt="Imagen 2">
-        <img src="3.jpeg" alt="Imagen 3">
-        <img src="4.jpeg" alt="Imagen 4">
-        <img src="5.jpeg" alt="Imagen 5">
-        <img src="6.jpeg" alt="Imagen 6">
-        <img src="7.jpeg" alt="Imagen 7">
-        <img src="8.jpeg" alt="Imagen 8">
-        <img src="9.jpeg" alt="Imagen 9">
-        <img src="10.jpeg" alt="Imagen 10">
-        <img src="11.jpeg" alt="Imagen 11">
-        <img src="12.jpeg" alt="Imagen 12">
-        <img src="13.jpeg" alt="Imagen 13">
-        <img src="14.jpeg" alt="Imagen 14">
-        <img src="15.jpeg" alt="Imagen 15">
-        <img src="16.jpeg" alt="Imagen 16">
-        <img src="17.jpeg" alt="Imagen 17">
-        <img src="18.jpeg" alt="Imagen 18">
-        <img src="19.jpeg" alt="Imagen 19">
-        <img src="20.jpeg" alt="Imagen 20">
-        <img src="21.jpeg" alt="Imagen 21">
-        <img src="22.jpeg" alt="Imagen 22">
-        <img src="23.jpeg" alt="Imagen 23">
-        <img src="24.jpeg" alt="Imagen 24">
-        <img src="25.jpeg" alt="Imagen 25">
-        <img src="26.jpeg" alt="Imagen 26">
-        <img src="27.jpeg" alt="Imagen 27">
-        <img src="28.jpeg" alt="Imagen 28">
-        <img src="29.jpeg" alt="Imagen 29">
-        <img src="30.jpeg" alt="Imagen 30">
-        <img src="31.jpeg" alt="Imagen 31">
-        <img src="32.jpeg" alt="Imagen 32">
-        <img src="33.jpeg" alt="Imagen 33">
-        <img src="34.jpeg" alt="Imagen 34">
-        <img src="35.jpeg" alt="Imagen 35">
-        <img src="36.jpeg" alt="Imagen 36">
-        <img src="37.jpeg" alt="Imagen 37">
-        <img src="38.jpeg" alt="Imagen 38">
-        <img src="39.jpeg" alt="Imagen 39">
-        <img src="40.jpeg" alt="Imagen 40">
-        <img src="41.jpeg" alt="Imagen 41">
-        <img src="42.jpeg" alt="Imagen 42">
-        <img src="43.jpeg" alt="Imagen 43">
-        <img src="44.jpeg" alt="Imagen 44">
-        <img src="45.jpeg" alt="Imagen 45">
-        <img src="46.jpeg" alt="Imagen 46">
-        <img src="47.jpeg" alt="Imagen 47">
-        <img src="48.jpeg" alt="Imagen 48">
-        <img src="49.jpeg" alt="Imagen 49">
-        <img src="50.jpeg" alt="Imagen 50">
-        <img src="51.jpeg" alt="Imagen 51">
-        <img src="52.jpeg" alt="Imagen 52">
-        <img src="53.jpeg" alt="Imagen 53">
-        <img src="54.jpeg" alt="Imagen 54">
-        <img src="55.jpeg" alt="Imagen 55">
-        <img src="56.jpeg" alt="Imagen 56">
-        <img src="57.jpeg" alt="Imagen 57">
-        <img src="58.jpeg" alt="Imagen 58">
-        <img src="59.jpeg" alt="Imagen 59">
-        <img src="60.jpeg" alt="Imagen 60">
-        <img src="61.jpeg" alt="Imagen 61">
-        <img src="62.jpeg" alt="Imagen 62">
-        <img src="63.jpeg" alt="Imagen 63">
-        <img src="64.jpeg" alt="Imagen 64">
-        <img src="65.jpeg" alt="Imagen 65">
-        <img src="66.jpeg" alt="Imagen 66">
-        <img src="67.jpeg" alt="Imagen 67">
-        <img src="68.jpeg" alt="Imagen 68">
-        <img src="69.jpeg" alt="Imagen 69">
-        <img src="70.jpeg" alt="Imagen 70">
-        <img src="71.jpeg" alt="Imagen 71">
-        <img src="72.jpeg" alt="Imagen 72">
-        <img src="73.jpeg" alt="Imagen 73">
-        <img src="74.jpeg" alt="Imagen 74">
-        <img src="75.jpeg" alt="Imagen 75">
-        <img src="76.jpeg" alt="Imagen 76">
-        <img src="77.jpeg" alt="Imagen 77">
-        <img src="78.jpeg" alt="Imagen 78">
-        <img src="79.jpeg" alt="Imagen 79">
-        <img src="80.jpeg" alt="Imagen 80">
-        <img src="81.jpeg" alt="Imagen 81">
-        <img src="82.jpeg" alt="Imagen 82">
-        <img src="83.jpeg" alt="Imagen 83">
-        <img src="84.jpeg" alt="Imagen 84">
-        <img src="85.jpeg" alt="Imagen 85">
-        <img src="86.jpeg" alt="Imagen 86">
-        <img src="87.jpeg" alt="Imagen 87">
-        <img src="88.jpeg" alt="Imagen 88">
-        <img src="89.jpeg" alt="Imagen 89">
-        <img src="90.jpeg" alt="Imagen 90">
-        <img src="91.jpeg" alt="Imagen 91">
-        <img src="92.jpeg" alt="Imagen 92">
-        <img src="93.jpeg" alt="Imagen 93">
+    <div class="gallery">
+        <!-- Imágenes del 1 al 93 -->
+        <img src="1.jpeg" alt="Imagen 1" class="show">
+        <img src="2.jpeg" alt="Imagen 2" class="show">
+        <img src="3.jpeg" alt="Imagen 3" class="show">
+        <img src="4.jpeg" alt="Imagen 4" class="show">
+        <img src="5.jpeg" alt="Imagen 5" class="show">
+        <img src="6.jpeg" alt="Imagen 6" class="show">
+        <img src="7.jpeg" alt="Imagen 7" class="show">
+        <img src="8.jpeg" alt="Imagen 8" class="show">
+        <img src="9.jpeg" alt="Imagen 9" class="show">
+        <img src="10.jpeg" alt="Imagen 10" class="show">
+        <img src="11.jpeg" alt="Imagen 11" class="show">
+        <img src="12.jpeg" alt="Imagen 12" class="show">
+        <img src="13.jpeg" alt="Imagen 13" class="show">
+        <img src="14.jpeg" alt="Imagen 14" class="show">
+        <img src="15.jpeg" alt="Imagen 15" class="show">
+        <img src="16.jpeg" alt="Imagen 16" class="show">
+        <img src="17.jpeg" alt="Imagen 17" class="show">
+        <img src="18.jpeg" alt="Imagen 18" class="show">
+        <img src="19.jpeg" alt="Imagen 19" class="show">
+        <img src="20.jpeg" alt="Imagen 20" class="show">
+        <img src="21.jpeg" alt="Imagen 21" class="show">
+        <img src="22.jpeg" alt="Imagen 22" class="show">
+        <img src="23.jpeg" alt="Imagen 23" class="show">
+        <img src="24.jpeg" alt="Imagen 24" class="show">
+        <img src="25.jpeg" alt="Imagen 25" class="show">
+        <img src="26.jpeg" alt="Imagen 26" class="show">
+        <img src="27.jpeg" alt="Imagen 27" class="show">
+        <img src="28.jpeg" alt="Imagen 28" class="show">
+        <img src="29.jpeg" alt="Imagen 29" class="show">
+        <img src="30.jpeg" alt="Imagen 30" class="show">
+        <img src="31.jpeg" alt="Imagen 31" class="show">
+        <img src="32.jpeg" alt="Imagen 32" class="show">
+        <img src="33.jpeg" alt="Imagen 33" class="show">
+        <img src="34.jpeg" alt="Imagen 34" class="show">
+        <img src="35.jpeg" alt="Imagen 35" class="show">
+        <img src="36.jpeg" alt="Imagen 36" class="show">
+        <img src="37.jpeg" alt="Imagen 37" class="show">
+        <img src="38.jpeg" alt="Imagen 38" class="show">
+        <img src="39.jpeg" alt="Imagen 39" class="show">
+        <img src="40.jpeg" alt="Imagen 40" class="show">
+        <img src="41.jpeg" alt="Imagen 41" class="show">
+        <img src="42.jpeg" alt="Imagen 42" class="show">
+        <img src="43.jpeg" alt="Imagen 43" class="show">
+        <img src="44.jpeg" alt="Imagen 44" class="show">
+        <img src="45.jpeg" alt="Imagen 45" class="show">
+        <img src="46.jpeg" alt="Imagen 46" class="show">
+        <img src="47.jpeg" alt="Imagen 47" class="show">
+        <img src="48.jpeg" alt="Imagen 48" class="show">
+        <img src="49.jpeg" alt="Imagen 49" class="show">
+        <img src="50.jpeg" alt="Imagen 50" class="show">
+        <img src="51.jpeg" alt="Imagen 51" class="show">
+        <img src="52.jpeg" alt="Imagen 52" class="show">
+        <img src="53.jpeg" alt="Imagen 53" class="show">
+        <img src="54.jpeg" alt="Imagen 54" class="show">
+        <img src="55.jpeg" alt="Imagen 55" class="show">
+        <img src="56.jpeg" alt="Imagen 56" class="show">
+        <img src="57.jpeg" alt="Imagen 57" class="show">
+        <img src="58.jpeg" alt="Imagen 58" class="show">
+        <img src="59.jpeg" alt="Imagen 59" class="show">
+        <img src="60.jpeg" alt="Imagen 60" class="show">
+        <img src="61.jpeg" alt="Imagen 61" class="show">
+        <img src="62.jpeg" alt="Imagen 62" class="show">
+        <img src="63.jpeg" alt="Imagen 63" class="show">
+        <img src="64.jpeg" alt="Imagen 64" class="show">
+        <img src="65.jpeg" alt="Imagen 65" class="show">
+        <img src="66.jpeg" alt="Imagen 66" class="show">
+        <img src="67.jpeg" alt="Imagen 67" class="show">
+        <img src="68.jpeg" alt="Imagen 68" class="show">
+        <img src="69.jpeg" alt="Imagen 69" class="show">
+        <img src="70.jpeg" alt="Imagen 70" class="show">
+        <img src="71.jpeg" alt="Imagen 71" class="show">
+        <img src="72.jpeg" alt="Imagen 72" class="show">
+        <img src="73.jpeg" alt="Imagen 73" class="show">
+        <img src="74.jpeg" alt="Imagen 74" class="show">
+        <img src="75.jpeg" alt="Imagen 75" class="show">
+        <img src="76.jpeg" alt="Imagen 76" class="show">
+        <img src="77.jpeg" alt="Imagen 77" class="show">
+        <img src="78.jpeg" alt="Imagen 78" class="show">
+        <img src="79.jpeg" alt="Imagen 79" class="show">
+        <img src="80.jpeg" alt="Imagen 80" class="show">
+        <img src="81.jpeg" alt="Imagen 81" class="show">
+        <img src="82.jpeg" alt="Imagen 82" class="show">
+        <img src="83.jpeg" alt="Imagen 83" class="show">
+        <img src="84.jpeg" alt="Imagen 84" class="show">
+        <img src="85.jpeg" alt="Imagen 85" class="show">
+        <img src="86.jpeg" alt="Imagen 86" class="show">
+        <img src="87.jpeg" alt="Imagen 87" class="show">
+        <img src="88.jpeg" alt="Imagen 88" class="show">
+        <img src="89.jpeg" alt="Imagen 89" class="show">
+        <img src="90.jpeg" alt="Imagen 90" class="show">
+        <img src="91.jpeg" alt="Imagen 91" class="show">
+        <img src="92.jpeg" alt="Imagen 92" class="show">
+        <img src="93.jpeg" alt="Imagen 93" class="show">
     </div>
 
-    <!-- Reproductor de música -->
-    <audio controls autoplay>
-        <source src="https://github.com/Samael1412/Samael1412/blob/2c4c78a6b349116c29a98a5722479ec5b4a6250d/Lady%20Gaga%2C%20Bruno%20Mars%20-%20Die%20With%20A%20Smile%20(Sub%20Espa%C3%B1ol).mp3" type="audio/mpeg">
-        Tu navegador no soporta la etiqueta de audio.
-    </audio>
+    <button class="button" onclick="playSong()">Haz click para escuchar la canción</button>
 
     <script>
-        const button = document.getElementById('magicButton');
-        const images = document.querySelectorAll('img');
-        
-        button.addEventListener('click', () => {
-            images.forEach(img => img.style.display = 'inline-block');
-        });
+        // Reproducir canción
+        function playSong() {
+            var audio = new Audio('https://github.com/Samael1412/Samael1412/blob/2c4c78a6b349116c29a98a5722479ec5b4a6250d/Lady%20Gaga%2C%20Bruno%20Mars%20-%20Die%20With%20A%20Smile%20(Sub%20Espa%C3%B1ol).mp3');
+            audio.play();
+        }
+
+        // Control de diapositivas
+        let currentImage = 0;
+        const images = document.querySelectorAll('.gallery img');
+
+        function showSlide() {
+            images.forEach((img, index) => {
+                img.classList.remove('show');
+                if (index === currentImage) {
+                    img.classList.add('show');
+                }
+            });
+            currentImage = (currentImage + 1) % images.length;
+        }
+
+        setInterval(showSlide, 1412); // Tiempo de cambio de diapositiva
+
+        showSlide(); // Inicializar la primera imagen
     </script>
 </body>
 </html>
-
 
