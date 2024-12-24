@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Feliz Navidad, mi amor!</title>
+    <title>¡Feliz Navidad!</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -19,38 +19,6 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-        }
-
-        .snow {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .snowflake {
-            position: absolute;
-            top: -10px;
-            color: #fff;
-            font-size: 1em;
-            animation: snow 10s linear infinite;
-        }
-
-        @keyframes snow {
-            0% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh);
-                opacity: 0.2;
-            }
-        }
-
-        .snowflake:nth-child(odd) {
-            animation-duration: 8s;
         }
 
         h1 {
@@ -74,6 +42,7 @@
             border-radius: 10px;
             cursor: pointer;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            margin: 10px;
             transition: transform 0.3s, background 0.3s;
         }
 
@@ -86,123 +55,61 @@
             transform: scale(0.9);
         }
 
-        @keyframes brilla {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        #estrella {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: white;
-            border-radius: 50%;
-        }
-
         .gallery {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 10px;
             margin-top: 20px;
         }
 
         .gallery img {
-            max-width: 300px;
-            border: 3px solid white;
+            max-width: 200px;
+            border: 2px solid #fff;
             border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         }
 
-        .gallery .button {
-            margin-top: 10px;
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <audio autoplay loop>
-        <source src="ruta-de-tu-cancion.mp3" type="audio/mpeg">
-        Tu navegador no soporta el audio.
-    </audio>
+    <h1>¡Feliz Navidad!</h1>
+    <p>Expresando todo mi amor hacia ti, Kammy. Eres mi infinito. ❤️</p>
 
-    <div class="snow">
-        <div class="snowflake">❄</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
-        <div class="snowflake">❄</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
-    </div>
+    <!-- Botones para abrir galerías -->
+    <button class="button" onclick="showGallery('juntos')">∞ (Juntos)</button>
+    <button class="button" onclick="showGallery('kammy')">+Kammy</button>
+    <button class="button" onclick="showGallery('yo')">+Yo</button>
 
-    <h1>¡Feliz Navidad, mi amor!</h1>
-    <h2 style="font-size: 2em; color: #ff6b6b; animation: brilla 2s infinite;">
-        Para ti, mi amor: [Su nombre]
-    </h2>
-    <p>Que esta Navidad esté llena de paz, amor y felicidad para ti y tus seres queridos.</p>
-
-    <button class="button" onclick="mostrarCarta()">Lee mi carta para ti</button>
-    <div id="carta" style="display: none; margin-top: 20px; font-size: 1.2em;">
-        Querida [nombre de tu novia], <br><br>
-        Desde que te conocí, mi mundo cambió por completo. Eres mi razón de sonreír, 
-        mi paz y mi alegría. Gracias por ser tú y por llenar mi vida de amor. 
-        <br><br>
-        Con todo mi amor, [tu nombre].
-    </div>
-
-    <div style="margin-top: 20px;">
-        <p id="frase" style="font-size: 1.5em;">Eres lo mejor que me ha pasado en la vida...</p>
-    </div>
-
-    <div id="estrella"></div>
-
-    <div class="gallery">
-        <button class="button" onclick="abrirGaleria('yo')">📸 Mis fotos</button>
-        <button class="button" onclick="abrirGaleria('Kammy')">❤️ Tus fotos</button>
-        <button class="button" onclick="abrirGaleria('Juntos')">♾️ Nuestras fotos</button>
-    </div>
+    <!-- Contenedores de las galerías -->
+    <div id="juntos" class="gallery hidden"></div>
+    <div id="kammy" class="gallery hidden"></div>
+    <div id="yo" class="gallery hidden"></div>
 
     <script>
-        // Generar copos de nieve dinámicos
-        const snowContainer = document.querySelector('.snow');
-
-        for (let i = 0; i < 50; i++) {
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
-            snowflake.style.left = Math.random() * 100 + 'vw';
-            snowflake.style.animationDelay = Math.random() * 5 + 's';
-            snowflake.style.fontSize = Math.random() * 1.5 + 0.5 + 'em';
-            snowflake.textContent = ['❄', '❅', '❆'][Math.floor(Math.random() * 3)];
-            snowContainer.appendChild(snowflake);
+        // Función para generar dinámicamente imágenes en una galería
+        function generateGallery(containerId, totalPhotos, folderName) {
+            const container = document.getElementById(containerId);
+            for (let i = 1; i <= totalPhotos; i++) {
+                const img = document.createElement('img');
+                img.src = `${folderName}/${i}.jpg`;
+                img.alt = `${containerId} Foto ${i}`;
+                container.appendChild(img);
+            }
         }
 
-        // Mostrar carta
-        function mostrarCarta() {
-            document.getElementById('carta').style.display = 'block';
-        }
+        // Generar las tres galerías
+        generateGallery('juntos', 100, 'Juntos');
+        generateGallery('kammy', 39, 'Kammy');
+        generateGallery('yo', 93, 'yo');
 
-        // Animaciones de texto con frases románticas
-        const frases = [
-            "Eres lo mejor que me ha pasado en la vida...",
-            "Cada día contigo es un regalo 🌹",
-            "Te amo más allá de las estrellas ✨",
-            "Gracias por ser mi todo ❤️"
-        ];
-        let i = 0;
-        setInterval(() => {
-            document.getElementById("frase").textContent = frases[i];
-            i = (i + 1) % frases.length;
-        }, 3000);
-
-        // Animación de estrella fugaz
-        const estrella = document.getElementById("estrella");
-        setInterval(() => {
-            estrella.style.left = Math.random() * 100 + "vw";
-            estrella.style.top = Math.random() * 50 + "vh";
-            estrella.style.transition = "left 2s linear, top 2s linear";
-        }, 3000);
-
-        // Abrir galería
-        function abrirGaleria(carpeta) {
-            window.open(`./${carpeta}/index.html`, '_blank');
+        // Función para mostrar una galería y ocultar las demás
+        function showGallery(id) {
+            document.querySelectorAll('.gallery').forEach(gallery => gallery.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
         }
     </script>
 </body>
