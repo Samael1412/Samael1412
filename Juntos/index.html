@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería Juntos</title>
+    <title>Galería de Juntos</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -15,11 +15,12 @@
             margin: 10px;
             border: 2px solid #ddd;
             border-radius: 10px;
+            display: none; /* Ocultar todas las imágenes por defecto */
         }
     </style>
 </head>
 <body>
-    <h1>Galería Juntos</h1>
+    <h1>Galería de Juntos</h1>
     <img src="1.jpeg" alt="Imagen 1">
     <img src="2.jpeg" alt="Imagen 2">
     <img src="3.jpeg" alt="Imagen 3">
@@ -120,6 +121,29 @@
     <img src="98.jpeg" alt="Imagen 98">
     <img src="99.jpeg" alt="Imagen 99">
     <img src="100.jpeg" alt="Imagen 100">
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll("img");
+        const totalImages = images.length;
+
+        // Mostrar la primera imagen
+        images[currentIndex].style.display = "block";
+
+        // Función para cambiar la imagen
+        function showNextImage() {
+            // Ocultar la imagen actual
+            images[currentIndex].style.display = "none";
+
+            // Incrementar el índice y volver a 0 si llega al final
+            currentIndex = (currentIndex + 1) % totalImages;
+
+            // Mostrar la siguiente imagen
+            images[currentIndex].style.display = "block";
+        }
+
+        // Cambiar de imagen cada 3.14 segundos (3140 milisegundos)
+        setInterval(showNextImage, 3140);
+    </script>
 </body>
 </html>
-
