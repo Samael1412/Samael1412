@@ -78,6 +78,7 @@
             font-size: 1.3em;
             margin: 10px 20px;
             text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+            color: #00f; /* Resaltado azul en la frase de paz, amor y felicidad */
         }
 
         .button {
@@ -129,8 +130,8 @@
     </style>
 </head>
 <body>
-    <audio autoplay loop>
-        <source src="ruta-de-tu-cancion.mp3" type="audio/mpeg">
+    <audio id="musica" autoplay loop>
+        <source src="https://raw.githubusercontent.com/Samael1412/Samael1412/11e2ad19c39048613f57ac2ce34240ed8c107ea8/Jos%C3%A9%20Feliciano%20-%20Feliz%20Navidad%20(Official%20Audio).mp3" type="audio/mpeg">
         Tu navegador no soporta el audio.
     </audio>
 
@@ -142,15 +143,17 @@
 
     <h1>¡Feliz Navidad, mi amor!</h1>
     <h2>
-        Para vos mi universo hermoso, Kammy
+        Para vos mi reina hermosa, Kammy
     </h2>
-    <p>Que esta Navidad esté llena de paz, amor y felicidad para vos y vuestros seres queridos.</p>
+    <p><span style="text-shadow: 0px 0px 10px #00f;">Que esta Navidad esté llena de paz, amor y felicidad para vos y vuestros seres queridos.</span></p>
 
-    <button class="button" onclick="mostrarCarta()">Lee mi carta para vos</button>
+    <button class="button" onclick="reproducirMusica(); mostrarCarta()">Lee mi carta para vos</button>
     <div id="carta" style="display: none;">
         Querida Kammy, <br><br>
         Desde que os conocí, mi mundo cambió por completo. Eres mi razón de sonreír, 
-        mi paz y mi alegría. Gracias por ser tú y por llenar mi vida de amor. 
+        mi paz y mi alegría. No hay palabras para describir cuanto os amo. Y espero que en esta noche la paséis de maravilla
+con vuestra familia y seres queridos. Os doy un fuerte abrazo, y un gran beso.
+Gracias por ser tú y por llenar mi vida de amor. 
         <br><br>
         Con todo mi amor, Sam.
     </div>
@@ -179,6 +182,12 @@
             snowContainer.appendChild(snowflake);
         }
 
+        // Reproducir música cuando se presione el botón
+        function reproducirMusica() {
+            const musica = document.getElementById('musica');
+            musica.play();
+        }
+
         // Mostrar carta
         function mostrarCarta() {
             document.getElementById('carta').style.display = 'block';
@@ -189,11 +198,18 @@
             "Sois lo mejor que me ha pasado en la vida...",
             "Cada día contigo es un regalo 🌹",
             "Te amo más allá de las estrellas ✨",
-            "Gracias por ser mi todo ❤️"
+            "Gracias por ser mi todo ❤️",
+            "Mi corazón late por vos 💓",
+            "Eres mi sol en los días nublados ☀️",
+            "Juntos somos imparables 💪",
+            "Cada beso tuyo es un sueño hecho realidad 😘",
+            "No hay distancia que nos separe 💕",
+            "Eres la razón de mi felicidad 😍"
         ];
         let i = 0;
         setInterval(() => {
             document.getElementById("frase").textContent = frases[i];
+            document.getElementById("frase").style.textShadow = "0px 0px 10px #00f";  // Resplandor azul en las frases animadas
             i = (i + 1) % frases.length;
         }, 3000);
 
