@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería de Vuestro Mago</title>
+    <title>Galería de Yo</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -15,11 +15,12 @@
             margin: 10px;
             border: 2px solid #ddd;
             border-radius: 10px;
+            display: none; /* Ocultar todas las imágenes por defecto */
         }
     </style>
 </head>
 <body>
-    <h1>Galería de Vuestro Mago</h1>
+    <h1>Galería de Yo</h1>
     <img src="1.jpeg" alt="Imagen 1">
     <img src="2.jpeg" alt="Imagen 2">
     <img src="3.jpeg" alt="Imagen 3">
@@ -113,6 +114,30 @@
     <img src="91.jpeg" alt="Imagen 91">
     <img src="92.jpeg" alt="Imagen 92">
     <img src="93.jpeg" alt="Imagen 93">
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll("img");
+        const totalImages = images.length;
+
+        // Mostrar la primera imagen
+        images[currentIndex].style.display = "block";
+
+        // Función para cambiar la imagen
+        function showNextImage() {
+            // Ocultar la imagen actual
+            images[currentIndex].style.display = "none";
+
+            // Incrementar el índice y volver a 0 si llega al final
+            currentIndex = (currentIndex + 1) % totalImages;
+
+            // Mostrar la siguiente imagen
+            images[currentIndex].style.display = "block";
+        }
+
+        // Cambiar de imagen cada 3.14 segundos (3140 milisegundos)
+        setInterval(showNextImage, 3140);
+    </script>
 </body>
 </html>
 
