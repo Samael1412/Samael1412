@@ -8,7 +8,8 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            background: url('fondo-navidad.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: #fff;
             text-align: center;
             margin: 0;
@@ -60,9 +61,21 @@
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
         }
 
+        h2 {
+            font-size: 2em;
+            color: #ffcc00;
+            animation: brilla 2s infinite;
+        }
+
+        @keyframes brilla {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
         p {
             font-size: 1.2em;
             margin: 10px 20px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
         }
 
         .button {
@@ -74,29 +87,27 @@
             border-radius: 10px;
             cursor: pointer;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s, background 0.3s;
+            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         .button:hover {
             background: #ff4444;
             transform: scale(1.1);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.5);
         }
 
         .button:active {
             transform: scale(0.9);
         }
 
-        @keyframes brilla {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        #estrella {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: white;
-            border-radius: 50%;
+        #carta {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 1.2em;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .gallery {
@@ -105,12 +116,6 @@
             align-items: center;
             gap: 10px;
             margin-top: 20px;
-        }
-
-        .gallery img {
-            max-width: 300px;
-            border: 3px solid white;
-            border-radius: 10px;
         }
 
         .gallery .button {
@@ -128,19 +133,16 @@
         <div class="snowflake">❄</div>
         <div class="snowflake">❅</div>
         <div class="snowflake">❆</div>
-        <div class="snowflake">❄</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
     </div>
 
     <h1>¡Feliz Navidad, mi amor!</h1>
-    <h2 style="font-size: 2em; color: #ff6b6b; animation: brilla 2s infinite;">
+    <h2>
         Para vos mi reina hermosa, Kammy
     </h2>
     <p>Que esta Navidad esté llena de paz, amor y felicidad para vos y vuestros seres queridos.</p>
 
     <button class="button" onclick="mostrarCarta()">Lee mi carta para vos</button>
-    <div id="carta" style="display: none; margin-top: 20px; font-size: 1.2em;">
+    <div id="carta" style="display: none;">
         Querida Kammy, <br><br>
         Desde que os conocí, mi mundo cambió por completo. Eres mi razón de sonreír, 
         mi paz y mi alegría. Gracias por ser tú y por llenar mi vida de amor. 
@@ -151,8 +153,6 @@
     <div style="margin-top: 20px;">
         <p id="frase" style="font-size: 1.5em;">Sois lo mejor que me ha pasado en la vida...</p>
     </div>
-
-    <div id="estrella"></div>
 
     <div class="gallery">
         <button class="button" onclick="abrirGaleria('Kammy')">Mi reina</button>
@@ -192,14 +192,6 @@
             i = (i + 1) % frases.length;
         }, 3000);
 
-        // Animación de estrella fugaz
-        const estrella = document.getElementById("estrella");
-        setInterval(() => {
-            estrella.style.left = Math.random() * 100 + "vw";
-            estrella.style.top = Math.random() * 50 + "vh";
-            estrella.style.transition = "left 2s linear, top 2s linear";
-        }, 3000);
-
         // Abrir galería
         function abrirGaleria(carpeta) {
             window.open(`./${carpeta}/index.html`, '_blank');
@@ -207,4 +199,5 @@
     </script>
 </body>
 </html>
+
 
