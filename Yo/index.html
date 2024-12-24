@@ -3,122 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vuestro Rey Mágico</title>
+    <title>Galería de Mi Reina</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: #4B0082; /* Fondo morado oscuro */
+            background-color: #f9b3b3; /* Fondo rojo claro */
+            background-image: url('corazones.gif'); /* GIF de corazones */
+            background-repeat: no-repeat;
+            background-size: 10%; /* Ajusta el tamaño de los corazones */
+            background-position: center top;
             text-align: center;
-            color: white;
+            height: 100vh; /* Asegura que el fondo cubra toda la pantalla */
             margin: 0;
-            padding: 0;
-            height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            justify-content: center; /* Centra verticalmente */
+            align-items: center; /* Centra horizontalmente */
             overflow: hidden;
-            position: relative;
         }
 
-        /* Estrellas mágicas */
-        .star {
+        /* Efecto de corazones flotando */
+        .heart {
             position: absolute;
-            top: -10px;
-            color: white;
-            font-size: 1.5em;
-            animation: magic 5s infinite;
+            color: red;
+            font-size: 2rem;
+            animation: float 10s linear infinite;
         }
 
-        @keyframes magic {
+        @keyframes float {
             0% {
-                transform: translateY(0) scale(1);
+                transform: translateY(0) rotate(0deg);
                 opacity: 1;
             }
-            50% {
-                transform: translateY(50vh) scale(1.2);
-                opacity: 0.5;
-            }
             100% {
-                transform: translateY(100vh) scale(1);
-                opacity: 0.2;
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
             }
         }
 
+        /* Título con letras doradas y elegantes */
         h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4.5em;
-            color: yellow;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-        }
-
-        .gallery {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            overflow: hidden;
-        }
-
-        .gallery img {
-            max-width: 350px;
-            margin: 10px;
-            border: 3px solid white;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-            opacity: 0;
-            position: absolute;
-            animation: slide 1.412s ease-in-out forwards;
-        }
-
-        @keyframes slide {
-            0% { opacity: 0; transform: translateX(100%); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
-
-        .gallery img.show {
-            opacity: 1;
-        }
-
-        .button {
-            background: #ff6b6b;
-            color: #fff;
-            font-size: 1.5em;
-            padding: 20px 40px;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s, background 0.3s;
-        }
-
-        .button:hover {
-            background: #ff4444;
-            transform: scale(1.1);
-        }
-
-        .button:active {
-            transform: scale(0.9);
-        }
-
-        .gallery .button {
+            color: gold;
+            font-size: 3rem;
             margin-top: 20px;
+            font-family: 'Great Vibes', cursive;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center; /* Centra las imágenes horizontalmente */
+            align-items: center; /* Centra las imágenes verticalmente */
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 300px;
+            margin: 10px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            display: none; /* Ocultar todas las imágenes por defecto */
+            cursor: pointer;
+        }
+
+        /* Botón "Click aquí para la magia" más romántico */
+        .magic-button {
+            background: linear-gradient(45deg, #ff6b6b, #ff4d4d); /* Fondo de gradiente */
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 2.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 30px 0;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease-in-out;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .magic-button:hover {
+            background: linear-gradient(45deg, #ff4d4d, #ff6b6b);
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .magic-button:active {
+            transform: scale(0.95);
         }
     </style>
 </head>
 <body>
-    <h1>Vuestro Rey Mágico</h1>
-
+    <h1>Galería de Vuestro Rey Mágico</h1>
     <!-- Estrellas en el fondo -->
     <div class="star" style="left: 10%;">✨</div>
     <div class="star" style="left: 30%;">✨</div>
     <div class="star" style="left: 50%;">✨</div>
     <div class="star" style="left: 70%;">✨</div>
     <div class="star" style="left: 90%;">✨</div>
+    <!-- Botón "Click aquí para la magia" -->
+    <button class="magic-button" id="magicButton">Click aquí para la mágia</button>
 
-    <div class="gallery">
-        <!-- Imágenes del 1 al 93 -->
+    <div class="container">
         <img src="1.jpeg" alt="Imagen 1" class="show">
         <img src="2.jpeg" alt="Imagen 2" class="show">
         <img src="3.jpeg" alt="Imagen 3" class="show">
@@ -212,36 +201,48 @@
         <img src="91.jpeg" alt="Imagen 91" class="show">
         <img src="92.jpeg" alt="Imagen 92" class="show">
         <img src="93.jpeg" alt="Imagen 93" class="show">
+ 
     </div>
 
-    <button class="button" onclick="playSong()">Haz click para la magia</button>
+    <!-- Reproductor de música invisible -->
+    <audio id="audioPlayer" src='https://github.com/Samael1412/Samael1412/blob/2c4c78a6b349116c29a98a5722479ec5b4a6250d/Lady%20Gaga%2C%20Bruno%20Mars%20-%20Die%20With%20A%20Smile%20(Sub%20Espa%C3%B1ol).mp3" preload="auto"></audio>
 
     <script>
-        // Reproducir canción
-        function playSong() {
-            var audio = new Audio('https://github.com/Samael1412/Samael1412/blob/2c4c78a6b349116c29a98a5722479ec5b4a6250d/Lady%20Gaga%2C%20Bruno%20Mars%20-%20Die%20With%20A%20Smile%20(Sub%20Espa%C3%B1ol).mp3');
-            audio.play();
+        let currentIndex = 0;
+        const images = document.querySelectorAll("img");
+        const totalImages = images.length;
+        const audioPlayer = document.getElementById("audioPlayer");
+        const magicButton = document.getElementById("magicButton");
+
+        // Mostrar la primera imagen
+        images[currentIndex].style.display = "block";
+
+        // Función para cambiar la imagen
+        function showNextImage() {
+            // Ocultar la imagen actual
+            images[currentIndex].style.display = "none";
+
+            // Incrementar el índice y volver a 0 si llega al final
+            currentIndex = (currentIndex + 1) % totalImages;
+
+            // Mostrar la siguiente imagen
+            images[currentIndex].style.display = "block";
         }
 
-        // Control de diapositivas
-        let currentImage = 0;
-        const images = document.querySelectorAll('.gallery img');
+        // Iniciar la reproducción de la canción y las diapositivas cuando se haga clic en el botón
+        magicButton.addEventListener("click", function() {
+            // Reproducir la canción
+            audioPlayer.play();
 
-        function showSlide() {
-            images.forEach((img, index) => {
-                img.classList.remove('show');
-                if (index === currentImage) {
-                    img.classList.add('show');
-                }
-            });
-            currentImage = (currentImage + 1) % images.length;
-        }
+            // Iniciar las diapositivas
+            setInterval(showNextImage, 1412); // Velocidad de cambio de imagen (1.412 segundos)
+        });
 
-        setInterval(showSlide, 1412); // Tiempo de cambio de diapositiva
-
-        showSlide(); // Inicializar la primera imagen
+        // Cambiar de imagen al hacer clic en la imagen
+        images.forEach(image => {
+            image.addEventListener('click', showNextImage);
+        });
     </script>
 </body>
 </html>
-
 
