@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Feliz Navidad!</title>
+    <title>¡Feliz Navidad, mi amor!</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to bottom, #1e3c72, #2a5298); /* Fondo azul navideño */
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
             color: #fff;
             text-align: center;
             margin: 0;
@@ -21,7 +21,6 @@
             overflow: hidden;
         }
 
-        /* Efecto de nieve */
         .snow {
             position: absolute;
             top: 0;
@@ -86,9 +85,28 @@
         .button:active {
             transform: scale(0.9);
         }
+
+        @keyframes brilla {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        #estrella {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+        }
+
     </style>
 </head>
 <body>
+    <audio autoplay loop>
+        <source src="ruta-de-tu-cancion.mp3" type="audio/mpeg">
+        Tu navegador no soporta el audio.
+    </audio>
+
     <div class="snow">
         <div class="snowflake">❄</div>
         <div class="snowflake">❅</div>
@@ -98,9 +116,26 @@
         <div class="snowflake">❆</div>
     </div>
 
-    <h1>¡Feliz Navidad!</h1>
+    <h1>¡Feliz Navidad, mi amor!</h1>
+    <h2 style="font-size: 2em; color: #ff6b6b; animation: brilla 2s infinite;">
+        Para ti, mi amor: [Su nombre]
+    </h2>
     <p>Que esta Navidad esté llena de paz, amor y felicidad para ti y tus seres queridos.</p>
-    <button class="button" onclick="alert('¡Que tengas unas fiestas increíbles! 🎄✨')">Haz clic aquí</button>
+
+    <button class="button" onclick="mostrarCarta()">Lee mi carta para ti</button>
+    <div id="carta" style="display: none; margin-top: 20px; font-size: 1.2em;">
+        Querida [nombre de tu novia], <br><br>
+        Desde que te conocí, mi mundo cambió por completo. Eres mi razón de sonreír, 
+        mi paz y mi alegría. Gracias por ser tú y por llenar mi vida de amor. 
+        <br><br>
+        Con todo mi amor, [tu nombre].
+    </div>
+
+    <div style="margin-top: 20px;">
+        <p id="frase" style="font-size: 1.5em;">Eres lo mejor que me ha pasado en la vida...</p>
+    </div>
+
+    <div id="estrella"></div>
 
     <script>
         // Generar copos de nieve dinámicos
@@ -115,6 +150,32 @@
             snowflake.textContent = ['❄', '❅', '❆'][Math.floor(Math.random() * 3)];
             snowContainer.appendChild(snowflake);
         }
+
+        // Mostrar carta
+        function mostrarCarta() {
+            document.getElementById('carta').style.display = 'block';
+        }
+
+        // Animaciones de texto con frases románticas
+        const frases = [
+            "Eres lo mejor que me ha pasado en la vida...",
+            "Cada día contigo es un regalo 🌹",
+            "Te amo más allá de las estrellas ✨",
+            "Gracias por ser mi todo ❤️"
+        ];
+        let i = 0;
+        setInterval(() => {
+            document.getElementById("frase").textContent = frases[i];
+            i = (i + 1) % frases.length;
+        }, 3000);
+
+        // Animación de estrella fugaz
+        const estrella = document.getElementById("estrella");
+        setInterval(() => {
+            estrella.style.left = Math.random() * 100 + "vw";
+            estrella.style.top = Math.random() * 50 + "vh";
+            estrella.style.transition = "left 2s linear, top 2s linear";
+        }, 3000);
     </script>
 </body>
 </html>
