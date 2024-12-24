@@ -64,28 +64,51 @@
             cursor: pointer;
         }
 
-        /* Botón "Click aquí para la magia" */
+        /* Botón "Click aquí para la magia" más bonito */
         .magic-button {
-            background-color: gold;
-            color: #fff;
+            background-color: #ff4d4d;
+            color: white;
             border: none;
-            padding: 10px 20px;
-            font-size: 1.5rem;
-            border-radius: 5px;
+            padding: 15px 30px;
+            font-size: 2rem;
+            border-radius: 25px;
             cursor: pointer;
             margin: 20px 0;
             font-family: 'Poppins', sans-serif;
-            transition: background-color 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease-in-out;
         }
 
         .magic-button:hover {
-            background-color: #ffcc00;
+            background-color: #ff6666;
+            transform: scale(1.1);
+        }
+
+        .magic-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Animación de corazones flotando */
+        .heart {
+            font-size: 2rem;
+            animation: float 10s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
     <h1>Galería de Mi Reina</h1>
-    
+
     <!-- Corazones flotando en el fondo -->
     <div class="heart" style="left: 10%; animation-delay: 0s;">❤️</div>
     <div class="heart" style="left: 30%; animation-delay: 1s;">❤️</div>
@@ -94,7 +117,7 @@
     <div class="heart" style="left: 90%; animation-delay: 4s;">❤️</div>
 
     <!-- Botón "Click aquí para la magia" -->
-    <button class="magic-button">Click aquí para la mágia</button>
+    <button class="magic-button" id="magicButton">Click aquí para la mágia</button>
 
     <div class="container">
         <img src="1.jpeg" alt="Imagen 1">
@@ -138,10 +161,15 @@
         <img src="39.jpeg" alt="Imagen 39">
     </div>
 
+    <!-- Reproductor de música invisible -->
+    <audio id="audioPlayer" src="https://github.com/Samael1412/Samael1412/blob/5acc43f35c08097348c4c0f69cfc13d42c08d928/Stromae%2C%20Pomme%20-%20Ma%20Meilleure%20Ennemie%20l%20(Arcane%20Season%202%20looped%20(2).mp3?raw=true" preload="auto"></audio>
+
     <script>
         let currentIndex = 0;
         const images = document.querySelectorAll("img");
         const totalImages = images.length;
+        const audioPlayer = document.getElementById("audioPlayer");
+        const magicButton = document.getElementById("magicButton");
 
         // Mostrar la primera imagen
         images[currentIndex].style.display = "block";
@@ -157,6 +185,15 @@
             // Mostrar la siguiente imagen
             images[currentIndex].style.display = "block";
         }
+
+        // Iniciar la reproducción de la canción y las diapositivas cuando se haga clic en el botón
+        magicButton.addEventListener("click", function() {
+            // Reproducir la canción
+            audioPlayer.play();
+
+            // Iniciar las diapositivas
+            setInterval(showNextImage, 1412); // Velocidad de cambio de imagen (1.412 segundos)
+        });
 
         // Cambiar de imagen al hacer clic en la imagen
         images.forEach(image => {
