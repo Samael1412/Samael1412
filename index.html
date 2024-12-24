@@ -99,6 +99,23 @@
             border-radius: 50%;
         }
 
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .gallery img {
+            max-width: 300px;
+            border: 3px solid white;
+            border-radius: 10px;
+        }
+
+        .gallery .button {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -136,6 +153,12 @@
     </div>
 
     <div id="estrella"></div>
+
+    <div class="gallery">
+        <button class="button" onclick="abrirGaleria('yo')">📸 Mis fotos</button>
+        <button class="button" onclick="abrirGaleria('Kammy')">❤️ Tus fotos</button>
+        <button class="button" onclick="abrirGaleria('Juntos')">♾️ Nuestras fotos</button>
+    </div>
 
     <script>
         // Generar copos de nieve dinámicos
@@ -176,6 +199,11 @@
             estrella.style.top = Math.random() * 50 + "vh";
             estrella.style.transition = "left 2s linear, top 2s linear";
         }, 3000);
+
+        // Abrir galería
+        function abrirGaleria(carpeta) {
+            window.open(`./${carpeta}/index.html`, '_blank');
+        }
     </script>
 </body>
 </html>
