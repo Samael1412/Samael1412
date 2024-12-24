@@ -15,6 +15,7 @@
             margin: 10px;
             border: 2px solid #ddd;
             border-radius: 10px;
+            display: none; /* Ocultar todas las imágenes por defecto */
         }
     </style>
 </head>
@@ -59,6 +60,30 @@
     <img src="37.jpeg" alt="Imagen 37">
     <img src="38.jpeg" alt="Imagen 38">
     <img src="39.jpeg" alt="Imagen 39">
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll("img");
+        const totalImages = images.length;
+
+        // Mostrar la primera imagen
+        images[currentIndex].style.display = "block";
+
+        // Función para cambiar la imagen
+        function showNextImage() {
+            // Ocultar la imagen actual
+            images[currentIndex].style.display = "none";
+
+            // Incrementar el índice y volver a 0 si llega al final
+            currentIndex = (currentIndex + 1) % totalImages;
+
+            // Mostrar la siguiente imagen
+            images[currentIndex].style.display = "block";
+        }
+
+        // Cambiar de imagen cada 3.14 segundos (3140 milisegundos)
+        setInterval(showNextImage, 3140);
+    </script>
 </body>
 </html>
 
